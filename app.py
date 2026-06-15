@@ -4,7 +4,7 @@ import sqlite3   #for the database stuff
 app = Flask(__name__)
 
 #the path and filename for the database
-DATABASE = "database.db"
+DATABASE = "please.db"
 
 #cool function to automatcally connect and query
 def query_db(sql,args=(),one=False):
@@ -24,8 +24,7 @@ def query_db(sql,args=(),one=False):
 #routes go here
 @app.route('/')
 def index():
-    results = query_db("SELECT * FROM item")  
-    return render_template('index.html',results=results)
+    return render_template('index.html')
 
 #this bit of code runs the app that we just made with debug on
 if __name__ == "__main__":
