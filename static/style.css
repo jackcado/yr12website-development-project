@@ -33,3 +33,18 @@ h1{
 .navbar li{
     float: right;
 }
+.hero-image{
+    background-image: url("./photos/lwkagecko.jpeg") ;
+    height: 352px;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.hero-text{
+    color: white;
+    position: absolute;
+    text-align: center;
+    top: 180px;
+    width: 100%;
+    font-size: 4rem;
+}
