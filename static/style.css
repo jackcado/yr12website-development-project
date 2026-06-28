@@ -1,5 +1,6 @@
 body{
     margin: 0px;
+    background-color: rgb(101, 152, 101);
 }
 
 main{
@@ -36,7 +37,8 @@ h1{
 
 .hero-image{
     background-image: url("lwkagecko.jpeg") ;
-    height: 352px;
+    height: 700px;
+    width: 800px;
     background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
@@ -44,8 +46,8 @@ h1{
 
 .hero-text{
     color: white;
-    position: relative;
-    text-align: center;
+    position: absolute;
+    text-align: justify;
     top: 180px;
     width: 100%;
     font-size: 2rem;
