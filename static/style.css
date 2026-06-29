@@ -2,6 +2,25 @@ body{
     margin: 0px;
     background-color: rgb(101, 152, 101);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.reportbutton{
+    display: block;
+    text-decoration: none;
+    list-style-type: none;
+    background-color: rgb(32, 61, 32);
+    padding: 15px;
+    max-width: 120px;
+}
+
+.reportbutton a{
+    color: white;
+    text-decoration: none;
+    overflow: hidden;
 }
 
 .navbar ul{
@@ -51,4 +70,8 @@ body{
     top: 80px;
     width: 100%;
     font-size: 1rem;
+}
+
+.login-container{
+   color: purple;
 }
