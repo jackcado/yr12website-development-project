@@ -1,16 +1,9 @@
 body{
     margin: 0px;
     background-color: rgb(101, 152, 101);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-main{
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-h1{
-    text-align: center;
-}
 .navbar ul{
     list-style-type: none;
     background-color: rgb(32, 61, 32);
@@ -35,20 +28,27 @@ h1{
     float: right;
 }
 
-.hero-image{
+.two-column{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.image-column{
     background-image: url("lwkagecko.jpeg") ;
     height: 700px;
     width: 800px;
-    background-position: left;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.hero-text{
-    color: white;
-    position: absolute;
-    text-align: justify;
-    top: 180px;
+.text-column{
+    color: rgb(255, 255, 255);
+    position: relative;
+    text-align: left;
+    margin-left: 10px;
+    top: 80px;
     width: 100%;
-    font-size: 2rem;
+    font-size: 1rem;
 }
