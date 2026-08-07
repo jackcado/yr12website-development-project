@@ -26,7 +26,7 @@ def index():
 def home():
     return render_template('index.html')
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/signup', methods=['GET', 'POST'])
 def login():
 
     if request.method == "POST":
@@ -41,6 +41,10 @@ def login():
         query_db(sql,(username, hashed_password))
         flash("Sign up Succsessful")
 
+    return render_template('signup.html')
+
+@app.route('/login')
+def login():
     return render_template('login.html')
 
 @app.route('/report')
