@@ -2,8 +2,20 @@
 {% block content %}
 
 <main>
-    <h3>uhh do this</h3>
-    <p>guh</p>
+    <div class="login-container">
+        <form action="/login" method="post">
+            <h2>Login</h2>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 </main>
 
 {% endblock %}
