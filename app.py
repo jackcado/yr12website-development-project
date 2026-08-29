@@ -51,15 +51,15 @@ def login():
         username = request.form['username']
         password = request.form['password']
         #try to find this user in the database- note- just keepin' it simple so usernames must be unique
-        sql = "SELECT * FROM user WHERE username = ?"
-        user = query_db(sql=sql,args=(username,),one=True)
-        if user:
+        sql = "SELECT * FROM users WHERE username = ?"
+        users = query_db(sql=sql,args=(username,),one=True)
+        if users:
             #we got a user!!
             #check password matches-
-            if check_password_hash(user[2],password):
+            if check_password_hash(users[2],password):
                 #we are logged in successfully
                 #Store the username in the session
-                session['user'] = user
+                session['users'] = users
                 flash("Logged in successfully")
             else:
                 flash("Password incorrect")
