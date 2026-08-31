@@ -45,23 +45,19 @@ def signup():
 
 @app.route('/login', methods=["GET","POST"])
 def login():
+    print(request.form)
     if request.method == "POST":
-
-        Username = request.form['Username']
-        Password = request.form['Password']
-
-        (Username)
-
-    sql = "SELECT * from Users WHERE Users = ?"
-    Users = query_db(sql=sql,args=(Username,),one=True)
-
-    if Users:
-            if check_password_hash(Users[2],Password): #check w mica, could be wrong
-                session['Users'] = Users
-                flash('Login Successful')
+        username = request.form['username']
+        password = request.form['password']
+    sql = "SELECT * from user WHERE username = ?"
+    user = query_db(sql=sql,args=(username,),one=True)
+    if user:
+            if check_password_hash(user['password'] ,password):
+                session['user'] = user
+                flash('Logged in successfully')
+                redirect('/')
             else:
-                flash('Incorrect Password')
-
+                flash('Incorrect username or password')
     return render_template('login.html')
 
 @app.route('/report')
