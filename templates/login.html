@@ -5,16 +5,17 @@
     <div class="login-container">
         <form action="/login" method="post">
             <h2>Login</h2>
-            <div class="input">
+            <div class="input-group">
                 <label for="username">Username</label>
-                <input type="text" id="Username" placeholer="enter here" required></input>
-    
+                <input type="text" id="Username" required></input>
+            </div>
+            <div class="input-group">
                 <label for="password">Password</label>
-                <input type="text" id="Password" placeholder="enter here" required></input>
+                <input type="text" id="Password" required></input>
             </div>
             <button type="submit">Login</button>
 
-            <div class="Account404">
+            <div class="redirect">
                 <a href="signup">Don't have an account? Sign up here!</a>
             </div>
         </form>

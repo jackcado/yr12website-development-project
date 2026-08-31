@@ -129,7 +129,7 @@ button:hover{
     flex-direction: column;
 }
 
-.input{
+.input-group{
     margin-bottom: 15px;
 }
 
@@ -156,4 +156,12 @@ button{
 
 button:hover{
     background-color: #0056b3;
+}
+
+.redirect{
+    margin-top: 16px;
+}
+
+a{
+    color: rgb(21, 41, 21);
 }

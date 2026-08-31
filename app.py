@@ -50,7 +50,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
     sql = "SELECT * from user WHERE username = ?"
-    user = query_db(sql=sql,args=(username,),one=True)
+    user = query_db(sql=sql,args=('username',),one=True)
     if user:
             if check_password_hash(user['password'] ,password):
                 session['user'] = user
