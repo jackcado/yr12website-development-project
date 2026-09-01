@@ -1,3 +1,4 @@
+/*INDEXPAGE*/
 body{
     margin: 0px;
     background-color: rgb(101, 152, 101);
@@ -6,8 +7,8 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
 }
-
 .reportbutton{
     display: block;
     text-decoration: none;
@@ -16,43 +17,16 @@ body{
     padding: 15px;
     max-width: 120px;
 }
-
 .reportbutton a{
     color: white;
     text-decoration: none;
     overflow: hidden;
 }
-
-.navbar ul{
-    list-style-type: none;
-    background-color: rgb(32, 61, 32);
-    padding: 0px;
-    margin: 0px;
-    overflow: hidden;
-}
-
-.navbar a{
-    color: white;
-    text-decoration: none;
-    padding: 15px;
-    display: block;
-    text-align: center;
-}
-
-.navbar a:hover{
-    background-color: rgb(21, 41, 21);
-}
-
-.navbar li{
-    float: right;
-}
-
 .two-column{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
-
 .image-column{
     background-image: url("lwkagecko.jpeg") ;
     height: 700px;
@@ -61,7 +35,6 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 .text-column{
     color: rgb(255, 255, 255);
     position: relative;
@@ -72,28 +45,49 @@ body{
     font-size: 1rem;
 }
 
+
+/*NAVBAR*/
+.navbar ul{
+    list-style-type: none;
+    background-color: rgb(32, 61, 32);
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+.navbar a{
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+}
+.navbar a:hover{
+    background-color: rgb(21, 41, 21);
+}
+.navbar li{
+    float: right;
+}
+
+
+/*SIGNUP*/
 .signup-container{
-   color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
    height: 300px;
    width: 500px;
    padding: 100px;
    border-radius: 8px;
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 .signup-form{
     display: flex;
     flex-direction: column;
+    float: right;
 }
-
 .input-group{
     margin-bottom: 15px;
 }
-
 label{
     font-weight: bold;
 }
-
 input{
     padding: 8px;
     border-radius: 4px;
@@ -101,7 +95,6 @@ input{
     width: 100%;
     box-sizing: border-box;
 }
-
 button{
     padding: 8px;
     border: none;
@@ -110,33 +103,29 @@ button{
     color: #fff;
     cursor: pointer;
 }
-
 button:hover{
     background-color: #0056b3;
 }
 
+
+/*LOGIN*/
 .login-container{
    color: rgb(255, 255, 255);
    height: 300px;
    width: 500px;
    padding: 100px;
    border-radius: 8px;
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 .login-form{
     display: flex;
     flex-direction: column;
 }
-
 .input-group{
     margin-bottom: 15px;
 }
-
 label{
     font-weight: bold;
 }
-
 input{
     padding: 8px;
     border-radius: 4px;
@@ -144,7 +133,6 @@ input{
     width: 100%;
     box-sizing: border-box;
 }
-
 button{
     padding: 8px;
     border: none;
@@ -153,15 +141,12 @@ button{
     color: #fff;
     cursor: pointer;
 }
-
 button:hover{
     background-color: #0056b3;
 }
-
 .redirect{
     margin-top: 16px;
 }
-
 a{
     color: rgb(21, 41, 21);
 }
