@@ -49,9 +49,9 @@ def login():
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
-    sql = "SELECT * from user WHERE username = ?"
-    user = query_db(sql=sql,args=('username',),one=True)
-    if user:
+        sql = "SELECT * from user WHERE username = ?"
+        user = query_db(sql=sql,args=('username',),one=True)
+        if user:
             if check_password_hash(user['password'] ,password):
                 session['user'] = user
                 flash('Logged in successfully')
