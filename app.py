@@ -37,7 +37,7 @@ def signup():
 
         hashed_password = generate_password_hash(password)
 
-        sql = "INSERT INTO users (username, password) VALUES (?, ?);"
+        sql = "INSERT INTO user (username, password) VALUES (?, ?);"
         query_db(sql,(username, hashed_password))
         flash("Sign up Succsessful")
 
