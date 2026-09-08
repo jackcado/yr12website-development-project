@@ -52,7 +52,7 @@ def login():
         sql = "SELECT * from user WHERE username = ?"
         user = query_db(sql=sql,args=('username',),one=True)
         if user:
-            if check_password_hash(user['password'] ,password):
+            if check_password_hash(user[2] ,password):
                 session['user'] = user
                 flash('Logged in successfully')
                 redirect('/')
