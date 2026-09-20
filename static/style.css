@@ -46,9 +46,14 @@ body{
 }
 .flash{
     list-style-type: none;
+    background-color: #ffde3a;
+    box-shadow: #222 5px, 5px, 10px;
+    max-width: 16rem;
+    padding: 10px;
+    margin-left: 6.3rem;
 }
 .flash-message{
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 
