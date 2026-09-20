@@ -47,17 +47,22 @@ def signup():
 def login():
     print(request.form)
     if request.method == "POST":
+        #getting username
         username = request.form['username']
         password = request.form['password']
+
+        #checking here
         sql = "SELECT * from user WHERE username = ?"
-        user = query_db(sql=sql,args=('username',),one=True)
+        user = query_db(sql=sql,args=(username,),one=True)
         if user:
-            if check_password_hash(user[2] ,password):
+            if check_password_hash(user[2],password):
+                #stores in session
                 session['user'] = user
-                flash('Logged in successfully')
-                redirect('/')
+                flash("Logged in successfully")
             else:
-                flash('Incorrect username or password')
+                flash("Incorrect password")
+        else:
+            flash("User does not exist")
     return render_template('login.html')
 
 @app.route('/report')
