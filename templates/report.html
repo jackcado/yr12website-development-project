@@ -1,9 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!-- this section is for the report post form -->
 <main>
-    <h3>report stuff</h3>
-    <p>booo</p>
+    <div class="report-container">
+        <form action="/report" method="post">
+            <h2>Make Report</h2>
+
+            <!-- text boxes for user's username and location found-->
+            <div class="input-group">
+                <label for="username">Your Username</label>
+                <input type="text" name="username" required></input>
+            </div>
+            <div class="input-group">
+                <label for="location">Location Found</label>
+                <input type="text" name="location" required></input>
+            </div>
+
+            <!-- drop down menu for species select -->
+            <div class="dropdown">
+                <label for="species">Species</label>
+                <select id="species" name="species" required>
+                    <option value="" selected disabled>Select a species</option>
+            <!-- list of species to select from -->
+                    <option value="lizard">Lizard</option>
+                    <option value="gecko">Gecko</option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+            <!-- takes user to species list with pictures incase they don't know the name of what they saw -->
+            <div class="redirect">
+                <a href="speciesfinder.html">Don't know what species you saw? Check out our photo guide!</a>
+            </div>
+        </form>
+    </div>
 </main>
 
 {% endblock %}

@@ -3,10 +3,13 @@ import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 
+#secret key for sessions and flash
 app.config['SECRET_KEY'] = "password123"
 
+#path and filename for database
 DATABASE = "please.db"
 
+#connects and query database
 def query_db(sql,args=(),one=False):
     '''connect and query- will retun one item if one=true and can accept arguments as tuple'''
     db = sqlite3.connect(DATABASE)
@@ -18,7 +21,7 @@ def query_db(sql,args=(),one=False):
     return (results[0] if results else None) if one else results
 
 
-#routes
+#index routes
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -26,6 +29,7 @@ def index():
 def home():
     return render_template('index.html')
 
+#signup route and inserts user info into database while hashing password so it isn't stored in the database directly
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
 
@@ -43,6 +47,7 @@ def signup():
 
     return render_template('signup.html')
 
+#login route. checks if username and password hash match for a successful login
 @app.route('/login', methods=["GET","POST"])
 def login():
     print(request.form)
@@ -77,7 +82,7 @@ def searchreports():
 def speciesfinder():
     return render_template('speciesfinder.html')
 
-
+#inserts items into database
 @app.post('/add_item')
 def add_item():
     item = request.form['item_name']

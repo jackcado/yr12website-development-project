@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!-- signup form -->
 <main>
     <div class="signup-container">
         <form action="/signup" method="post">
@@ -15,6 +16,7 @@
             </div>
             <button type="submit">Sign Up</button>
 
+<!-- redirects to login incase user doesn't have existing account -->
             <div class="redirect">
                 <a href="login">Already have an account? Log in here!</a>
             </div>
