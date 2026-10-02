@@ -20,10 +20,23 @@ def query_db(sql,args=(),one=False):
     db.close()
     return (results[0] if results else None) if one else results
 
-
 #index routes
-@app.route('/')
-def index():
+@app.route('/', methods=["GET","POST"])
+def index_post():
+    #if we are posting to the route do this stuff
+    if request.method == "POST":
+        #get the username from the form
+        username = request.form['username']
+        password = request.form['password']
+        #check them here
+        if username == username and password == password:
+            #we successfully logged in
+            #store the username in the session- it's a dictionary that is visible everywhere
+            #for the entire time this user has the app open in browser- clears wehn the close the browser
+            session['username'] = username
+            
+        #it can be used in the route without having to send it as it is visible in the session
+    #regardless of whether we get OR post we render a template
     return render_template('index.html')
 @app.route('/home')
 def home():
@@ -70,8 +83,19 @@ def login():
             flash("User does not exist")
     return render_template('login.html')
 
-@app.route('/report')
+@app.route('/report', methods = ["GET", "POST"])
 def report():
+    
+    if request.method == "POST":
+
+        username = request.form['username']
+        location = request.form['location']
+        speciescname = request.form['species']
+
+        sql = "INSERT INTO reports (username, location, speciescname) VALUES (?, ?, ?);"
+        query_db(sql,(username, location, speciescname))
+        flash("Thank you for your report!")
+
     return render_template('report.html')
 
 @app.route('/searchreports')
@@ -90,5 +114,6 @@ def add_item():
     query_db(sql,(item,))
     return redirect('/')
 
+#runs with debug enabled
 if __name__ == "__main__":
     app.run(debug=True)
