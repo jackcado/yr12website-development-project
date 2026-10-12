@@ -81,6 +81,7 @@ def login():
                 flash("Incorrect password")
         else:
             flash("User does not exist")
+
     return render_template('login.html')
 
 @app.route('/report', methods = ["GET", "POST"])
@@ -89,14 +90,20 @@ def report():
     if request.method == "POST":
 
         username = request.form['username']
+
         location = request.form['location']
+        
         speciescname = request.form['species']
 
-        sql = "INSERT INTO reports (username, location, speciescname) VALUES (?, ?, ?);"
-        query_db(sql,(username, location, speciescname))
+        sql = "INSERT INTO reports (location, username, speciescname) VALUES (?, ?, ?);"
+        query_db(sql,(location, username, speciescname))
         flash("Thank you for your report!")
 
-    return render_template('report.html')
+    sql = "SELECT speciesid, commonname FROM species"
+    results = query_db(sql)
+    print (results)
+
+    return render_template('report.html',species=results)
 
 @app.route('/searchreports')
 def searchreports():

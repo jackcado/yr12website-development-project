@@ -23,8 +23,9 @@
                 <select id="species" name="species" required>
                     <option value="" selected disabled>Select a species</option>
             <!-- list of species to select from -->
-                    <option value="lizard">Lizard</option>
-                    <option value="gecko">Gecko</option>
+                    {% for specie in species %}
+                    <option value="{{specie[0]}}">{{specie[1]}}</option>
+                    {% endfor %}
                 </select>
             </div>
             <!-- takes user to species list with pictures incase they don't know the name of what they saw -->
