@@ -93,15 +93,14 @@ def report():
 
         location = request.form['location']
         
-        speciescname = request.form['species']
+        speciesid = request.form['species']
 
-        sql = "INSERT INTO reports (location, username, speciescname) VALUES (?, ?, ?);" #create a query to insert their data
-        query_db(sql,(location, username, speciescname)) #execute the query
+        sql = "INSERT INTO reports (location, username, speciesid) VALUES (?, ?, ?);" #create a query to insert their data
+        query_db(sql,(location, username, speciesid)) #execute the query
         flash("Thank you for your report!")
 
     sql = "SELECT speciesid, commonname FROM species"
     results = query_db(sql)
-    print (results)
 
     return render_template('report.html',species=results)
 
