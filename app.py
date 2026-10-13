@@ -54,8 +54,8 @@ def signup():
 
         hashed_password = generate_password_hash(password)
 
-        sql = "INSERT INTO user (username, password) VALUES (?, ?);"
-        query_db(sql,(username, hashed_password))
+        sql = "INSERT INTO user (username, password) VALUES (?, ?);" #create a query to insert their data
+        query_db(sql,(username, hashed_password)) #execute the query
         flash("Sign up Succsessful")
 
     return render_template('signup.html')
@@ -95,8 +95,8 @@ def report():
         
         speciescname = request.form['species']
 
-        sql = "INSERT INTO reports (location, username, speciescname) VALUES (?, ?, ?);"
-        query_db(sql,(location, username, speciescname))
+        sql = "INSERT INTO reports (location, username, speciescname) VALUES (?, ?, ?);" #create a query to insert their data
+        query_db(sql,(location, username, speciescname)) #execute the query
         flash("Thank you for your report!")
 
     sql = "SELECT speciesid, commonname FROM species"
@@ -116,10 +116,11 @@ def speciesfinder():
 #inserts items into database
 @app.post('/add_item')
 def add_item():
+    #get the form data from the request object like this
     item = request.form['item_name']
-    sql = "INSERT INTO item (item) VALUES (?);"
-    query_db(sql,(item,))
-    return redirect('/')
+    sql = "INSERT INTO item (item) VALUES (?);" #create a query to insert their data
+    query_db(sql,(item,)) #execute the query
+    return redirect('/') #redirect back to the home page
 
 #runs with debug enabled
 if __name__ == "__main__":

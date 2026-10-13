@@ -22,7 +22,7 @@
                 <label for="species">Species</label>
                 <select id="species" name="species" required>
                     <option value="" selected disabled>Select a species</option>
-            <!-- list of species to select from -->
+            <!-- list of species to select from; takes from database -->
                     {% for specie in species %}
                     <option value="{{specie[0]}}">{{specie[1]}}</option>
                     {% endfor %}
