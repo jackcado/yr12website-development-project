@@ -2,14 +2,15 @@
 {% block content %}
 
 <main>
-    <h2>Recorded Sightings</h2>
-    
-    <div class="text">
-        {% for result in results %}
-        <p>Species: {{result[0]}} | Location: {{result[2]}} | Reported by: {{result[1]}}</p>
-        {% endfor %}
+    <div class="sight">
+        <h2>Recorded Sightings</h2>
     </div>
-    
+        <div class="resulttext">
+            {% for result in results %}
+            <p>Species: {{result[0]}} | Location: {{result[2]}} | Reported by: {{result[1]}}</p>
+            {% endfor %}
+        </div>
+    </body>
 </main>
 
 {% endblock %}

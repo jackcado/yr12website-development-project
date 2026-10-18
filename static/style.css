@@ -329,3 +329,23 @@ a{
     width: 100%;
     font-size: 1rem;
 }
+
+/*SEARCH REPORTS*/
+.sight{
+    color: rgb(255, 255, 255);
+    position: relative;
+    text-align: left;
+    margin-left: 70px;
+    top: 40px;
+    width: 100%;
+    font-size: 1.6rem;
+}
+.resulttext{
+    color: rgb(255, 255, 255);
+    position: relative;
+    text-align: left;
+    margin-left: 100px;
+    top: 80px;
+    width: 100%;
+    font-size: 1rem;
+}
