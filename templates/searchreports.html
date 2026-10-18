@@ -2,8 +2,14 @@
 {% block content %}
 
 <main>
-    <h3>look through reports?</h3>
-    <p>1 2 buckle my shoe</p>
+    <h2>Recorded Sightings</h2>
+    
+    <div class="text">
+        {% for result in results %}
+        <p>Species: {{result[0]}} | Location: {{result[2]}} | Reported by: {{result[1]}}</p>
+        {% endfor %}
+    </div>
+    
 </main>
 
 {% endblock %}

@@ -21,7 +21,7 @@
             <div class="dropdown">
                 <label for="species">Species</label>
                 <select id="species" name="species" required>
-                    <option value="" selected disabled>Select a species</option>
+                    <option value="" selected disabled>Select a species</option> <!-- prevents user from not selecting a species -->
             <!-- list of species to select from; takes from database -->
                     {% for specie in species %}
                     <option value="{{specie[0]}}">{{specie[1]}}</option>

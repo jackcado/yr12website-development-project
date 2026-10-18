@@ -104,9 +104,14 @@ def report():
 
     return render_template('report.html',species=results)
 
-@app.route('/searchreports')
+@app.route('/searchreports', methods = ["GET", "POST"])
 def searchreports():
-    return render_template('searchreports.html')
+
+    sql = "SELECT speciesid, username, location FROM reports"
+    sql = "SELECT species.commonname, reports.username, reports.location FROM reports LEFT JOIN species ON reports.speciesid = species.speciesid"
+    results = query_db(sql)
+
+    return render_template('searchreports.html', results=results)
 
 @app.route('/speciesfinder')
 def speciesfinder():
