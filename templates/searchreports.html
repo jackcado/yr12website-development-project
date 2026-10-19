@@ -7,7 +7,7 @@
     </div>
         <div class="resulttext">
             {% for result in results %}
-            <p>Species: {{result[0]}} | Location: {{result[2]}} | Reported by: {{result[1]}}</p>
+            <a href="reports/{{result[3]}}">{{result[0]}} | {{result[2]}} | Reported by: {{result[1]}}</a>
             {% endfor %}
         </div>
     </body>

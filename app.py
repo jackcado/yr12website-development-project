@@ -20,23 +20,9 @@ def query_db(sql,args=(),one=False):
     db.close()
     return (results[0] if results else None) if one else results
 
-#index routes
+#homepage routes
 @app.route('/', methods=["GET","POST"])
-def index_post():
-    #if we are posting to the route do this stuff
-    if request.method == "POST":
-        #get the username from the form
-        username = request.form['username']
-        password = request.form['password']
-        #check them here
-        if username == username and password == password:
-            #we successfully logged in
-            #store the username in the session- it's a dictionary that is visible everywhere
-            #for the entire time this user has the app open in browser- clears wehn the close the browser
-            session['username'] = username
-            
-        #it can be used in the route without having to send it as it is visible in the session
-    #regardless of whether we get OR post we render a template
+def index():
     return render_template('index.html')
 @app.route('/home')
 def home():
@@ -84,6 +70,7 @@ def login():
 
     return render_template('login.html')
 
+#route and sql form to insert into database
 @app.route('/report', methods = ["GET", "POST"])
 def report():
     
@@ -104,20 +91,25 @@ def report():
 
     return render_template('report.html',species=results)
 
+#route to show all reports made, can each be clicked on to lead to their own unique pages
 @app.route('/searchreports', methods = ["GET", "POST"])
 def searchreports():
 
-    sql = "SELECT speciesid, username, location FROM reports"
-    sql = "SELECT species.commonname, reports.username, reports.location FROM reports LEFT JOIN species ON reports.speciesid = species.speciesid"
+    #sql = "SELECT reportid, speciesid, username, location FROM reports"
+    sql = "SELECT species.commonname, reports.username, reports.location, reports.reportid FROM reports LEFT JOIN species ON reports.speciesid = species.speciesid"
     results = query_db(sql)
 
     return render_template('searchreports.html', results=results)
+#dynamic route to show reports
 @app.route('/reports/<int:reportid>')
 def reports(reportid):
     sql = "SELECT * FROM reports WHERE reportid=?"
-    reports = query_db(sql,args=(reportid,),one=True)
+    sql = f"SELECT species.commonname, reports.username, reports.location, reports.reportid FROM reports LEFT JOIN species ON reports.speciesid = species.speciesid WHERE reportid={reportid}"
+
+    reports = query_db(sql,one=True)
     return render_template('reports.html', reports=reports)
 
+#route for species finder, no sql as just displays
 @app.route('/speciesfinder')
 def speciesfinder():
     return render_template('speciesfinder.html')

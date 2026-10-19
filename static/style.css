@@ -349,3 +349,14 @@ a{
     width: 100%;
     font-size: 1rem;
 }
+
+/*REPORTS*/
+.reports{
+    color: rgb(255, 255, 255);
+    position: relative;
+    text-align: left;
+    margin-left: 70px;
+    top: 40px;
+    width: 100%;
+    font-size: 1.2rem;
+}

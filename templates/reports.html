@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<!-- Display a single item title first-->
-<h1>{{ reports[1] }}</h1>
- <!--now in two columns display the imnage then the text  -->
-<div class="twocolumn">
-    
-    <p>{{reports[3]}}</p>
-</div>
+
+<body>
+    <div class="reports">
+        <h1>{{ reports[0] }}</h1>
+
+        <div class="twocolumn">
+            <p>Sight recorded in {{reports[2]}}</p>
+            <p>Reported by {{reports[1]}}</p>
+        </div>
+    </div>
+</body>
+
 {% endblock %}
