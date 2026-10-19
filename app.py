@@ -112,6 +112,11 @@ def searchreports():
     results = query_db(sql)
 
     return render_template('searchreports.html', results=results)
+@app.route('/reports/<int:reportid>')
+def reports(reportid):
+    sql = "SELECT * FROM reports WHERE reportid=?"
+    reports = query_db(sql,args=(reportid,),one=True)
+    return render_template('reports.html', reports=reports)
 
 @app.route('/speciesfinder')
 def speciesfinder():
