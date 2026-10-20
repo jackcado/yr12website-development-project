@@ -20,6 +20,9 @@ def query_db(sql,args=(),one=False):
     db.close()
     return (results[0] if results else None) if one else results
 
+USERNAME = "admin"
+PASSWORD = "admin"
+
 #homepage routes
 @app.route('/', methods=["GET","POST"])
 def index():
@@ -89,7 +92,7 @@ def report():
     sql = "SELECT speciesid, commonname FROM species"
     results = query_db(sql)
 
-    return render_template('report.html',species=results)
+    return render_template('report.html',species=results,)
 
 #route to show all reports made, can each be clicked on to lead to their own unique pages
 @app.route('/searchreports', methods = ["GET", "POST"])

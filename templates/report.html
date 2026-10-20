@@ -4,14 +4,15 @@
 <!-- this section is for the report post form -->
 <main>
     <div class="report-container">
+        {% if session["username"] == "admin" %}
         <form action="/report" method="post">
             <h2>Make a Report</h2>
-
-            <!-- text boxes for user's username and location found-->
-            <div class="input-group">
+            
+            <!-- text boxes for location found-->
+            <!-- <div class="input-group">
                 <label for="username">Your Username</label>
                 <input type="text" name="username" required></input>
-            </div>
+            </div> -->
             <div class="input-group">
                 <label for="location">Location Found</label>
                 <input type="text" name="location" required></input>
@@ -35,6 +36,11 @@
             <!-- submit button -->
             <button type="submit">Submit</button>
         </form>
+        {% else %}
+            <div class="loggedout">
+                <p>Please <a href="/login"> log in</a>before reporting!</p>
+            </div>
+        {% endif %}
     </div>
 </main>
 

@@ -8,6 +8,7 @@ body{
     align-items: center;
     height: 100vh;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 .reportbutton{
     display: block;
@@ -54,6 +55,11 @@ body{
 }
 .flash-message{
     color: rgb(0, 0, 0);
+}
+.para{
+    margin-right: 200px;
+    padding-bottom: 100px;
+    padding-top: 10px;
 }
 
 
