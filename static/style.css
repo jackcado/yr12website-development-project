@@ -84,6 +84,9 @@ body{
 .navbar li{
     float: right;
 }
+.navbar p{
+    float: left;
+}
 
 
 /*SIGNUP*/

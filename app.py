@@ -92,7 +92,7 @@ def report():
     sql = "SELECT speciesid, commonname FROM species"
     results = query_db(sql)
 
-    return render_template('report.html',species=results,)
+    return render_template('report.html', species=results)
 
 #route to show all reports made, can each be clicked on to lead to their own unique pages
 @app.route('/searchreports', methods = ["GET", "POST"])
