@@ -1,17 +1,26 @@
+"""Lizard Locator, to report sightings to DOC."""
 from flask import Flask, render_template, request, flash, session, redirect
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 
-#secret key for sessions and flash
+
+# Secret key for sessions and flash.
 app.config['SECRET_KEY'] = "password123"
 
-#path and filename for database
+
+# Path and filename for database.
 DATABASE = "please.db"
 
-#connects and query database
-def query_db(sql,args=(),one=False):
-    '''connect and query- will retun one item if one=true and can accept arguments as tuple'''
+
+# Connects and query database.
+def query_db(sql, args=(), one=False):
+    """Connect and query.
+
+    will retun one item if
+    one=true and can accept
+    arguments as tuple.
+    """
     db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
     cursor.execute(sql, args)
@@ -20,21 +29,29 @@ def query_db(sql,args=(),one=False):
     db.close()
     return (results[0] if results else None) if one else results
 
+
 USERNAME = "admin"
 PASSWORD = "admin"
 
-#homepage routes
-@app.route('/', methods=["GET","POST"])
+
+# Homepage routes.
+@app.route('/', methods=["GET", "POST"])
 def index():
+    """Redirects to homepage."""
     return render_template('index.html')
+
+
 @app.route('/home')
 def home():
+    """Redirects to homepage."""
     return render_template('index.html')
 
-#signup route and inserts user info into database while hashing password so it isn't stored in the database directly
+
+# Signup route and inserts user info into database while hashing password.
+# So it isn't stored in the database directly.
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-
+    """Sign up form."""
     if request.method == "POST":
 
         username = request.form['username']
@@ -43,27 +60,31 @@ def signup():
 
         hashed_password = generate_password_hash(password)
 
-        sql = "INSERT INTO user (username, password) VALUES (?, ?);" #create a query to insert their data
-        query_db(sql,(username, hashed_password)) #execute the query
+        # Create a query to insert their data.
+        sql = "INSERT INTO user (username, password) VALUES (?, ?);"
+        query_db(sql, (username, hashed_password))  # Execute the query.
         flash("Sign up Succsessful")
 
     return render_template('signup.html')
 
-#login route. checks if username and password hash match for a successful login
-@app.route('/login', methods=["GET","POST"])
+
+# Login route.
+# Checks if username and password hash match for a successful login.
+@app.route('/login', methods=["GET", "POST"])
 def login():
+    """Log in form."""
     print(request.form)
     if request.method == "POST":
-        #getting username
+        # Getting username.
         username = request.form['username']
         password = request.form['password']
 
-        #checking here
+        # Checking here.
         sql = "SELECT * from user WHERE username = ?"
-        user = query_db(sql=sql,args=(username,),one=True)
+        user = query_db(sql=sql, args=(username,), one=True)
         if user:
-            if check_password_hash(user[2],password):
-                #stores in session
+            if check_password_hash(user[2], password):
+                # Stores in session.
                 session['user'] = user
                 flash("Logged in successfully")
             else:
@@ -73,20 +94,38 @@ def login():
 
     return render_template('login.html')
 
-#route and sql form to insert into database
-@app.route('/report', methods = ["GET", "POST"])
+
+# Logs user out, in nav bar.
+@app.route('/logout')
+def logout():
+    """Delete current user from session."""
+    session.pop('user', None)
+    return redirect('/')
+
+
+# Route and sql form to insert into database.
+@app.route('/report', methods=["GET", "POST"])
 def report():
-    
+    """Report form."""
+    try:
+        session['user']
+    except KeyError:
+        flash("Please login")
+        return redirect('/login')
+
     if request.method == "POST":
 
         username = request.form['username']
 
         location = request.form['location']
-        
+
         speciesid = request.form['species']
 
-        sql = "INSERT INTO reports (location, username, speciesid) VALUES (?, ?, ?);" #create a query to insert their data
-        query_db(sql,(location, username, speciesid)) #execute the query
+        date = request.form['date']
+
+        # Create a query to insert their data.
+        sql = "INSERT INTO reports (location, username, speciesid, date) VALUES (?, ?, ?, ?);"
+        query_db(sql, (location, username, speciesid, date))  # Execute the query.
         flash("Thank you for your report!")
 
     sql = "SELECT speciesid, commonname FROM species"
@@ -94,38 +133,48 @@ def report():
 
     return render_template('report.html', species=results)
 
-#route to show all reports made, can each be clicked on to lead to their own unique pages
-@app.route('/searchreports', methods = ["GET", "POST"])
-def searchreports():
 
-    #sql = "SELECT reportid, speciesid, username, location FROM reports"
-    sql = "SELECT species.commonname, reports.username, reports.location, reports.reportid FROM reports LEFT JOIN species ON reports.speciesid = species.speciesid"
+# Route to show all reports made.
+# Can each be clicked on to lead to their own unique pages.
+@app.route('/searchreports', methods=["GET", "POST"])
+def searchreports():
+    """Look through reports made."""
+    sql = "SELECT species.commonname, reports.username, reports.location, reports.date, reports.reportid FROM reports LEFT JOIN species ON reports.speciesid = species.speciesid"
     results = query_db(sql)
 
     return render_template('searchreports.html', results=results)
-#dynamic route to show reports
+
+
+# Dynamic route to show reports.
 @app.route('/reports/<int:reportid>')
 def reports(reportid):
+    """Report form."""
     sql = "SELECT * FROM reports WHERE reportid=?"
-    sql = f"SELECT species.commonname, reports.username, reports.location, reports.reportid FROM reports LEFT JOIN species ON reports.speciesid = species.speciesid WHERE reportid={reportid}"
+    sql = f"SELECT species.commonname, reports.username, reports.location, reports.date, reports.reportid FROM reports LEFT JOIN species ON reports.speciesid = species.speciesid WHERE reportid={reportid}"
 
-    reports = query_db(sql,one=True)
+    reports = query_db(sql, one=True)
     return render_template('reports.html', reports=reports)
 
-#route for species finder, no sql as just displays
+
+# Route for species finder, no sql as just displays.
 @app.route('/speciesfinder')
 def speciesfinder():
+    """List of species with pictures. Just a redirect."""
     return render_template('speciesfinder.html')
 
-#inserts items into database
+
+# Inserts items into database.
 @app.post('/add_item')
 def add_item():
-    #get the form data from the request object like this
+    """To insert into database."""
+    # Get the form data from the request object like this.
     item = request.form['item_name']
-    sql = "INSERT INTO item (item) VALUES (?);" #create a query to insert their data
-    query_db(sql,(item,)) #execute the query
-    return redirect('/') #redirect back to the home page
+    # Create a query to insert their data.
+    sql = "INSERT INTO item (item) VALUES (?);"
+    query_db(sql, (item,))  # Execute the query.
+    return redirect('/')  # Redirect back to the home page.
 
-#runs with debug enabled
+
+# Runs with debug enabled.
 if __name__ == "__main__":
     app.run(debug=True)

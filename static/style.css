@@ -8,7 +8,6 @@ body{
     align-items: center;
     height: 100vh;
     overflow-x: hidden;
-    overflow-y: hidden;
 }
 .reportbutton{
     display: block;

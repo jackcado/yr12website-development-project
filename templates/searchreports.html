@@ -7,7 +7,7 @@
     </div>
         <div class="resulttext">
             {% for result in results %}
-            <a href="reports/{{result[3]}}">{{result[0]}} | {{result[2]}} | Reported by: {{result[1]}}</a>
+            <a href="reports/{{result[4]}}">{{result[0]}} | {{result[2]}} | Reported by: {{result[1]}} on {{result[3]}}</a>
             {% endfor %}
         </div>
     </body>

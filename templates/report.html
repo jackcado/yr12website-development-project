@@ -10,11 +10,18 @@
             <!-- text boxes for location found-->
             <div class="input-group">
                 <label for="username">Your Username</label>
-                <input type="text" name="username" required></input>
+                <input type="text" value="{{session['user'][1]}}" required></input>
             </div>
+
             <div class="input-group">
                 <label for="location">Location Found</label>
                 <input type="text" name="location" required></input>
+            </div>
+
+            <!-- date select -->
+            <div class="input-group">
+                <label for="date">Date Found</label>
+                <input type="date" name="date" required></input>
             </div>
 
             <!-- drop down menu for species select -->
@@ -32,6 +39,7 @@
             <div class="redirect">
                 <a href="speciesfinder.html">Don't know what species you saw? Check out our photo guide!</a>
             </div>
+
             <!-- submit button -->
             <button type="submit">Submit</button>
         </form>
