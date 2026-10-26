@@ -125,6 +125,14 @@ button{
 button:hover{
     background-color: #0056b3;
 }
+.signupimg{
+    background-image: url("signupimg.jpg") ;
+    height: 654px;
+    width: 600px;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 
 /*LOGIN*/
