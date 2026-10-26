@@ -8,4 +8,7 @@ all species specific photos from wikimedia commons (commons.wikimedia.org)
 erd template - https://online.visual-paradigm.com/app/diagrams
 wireframe template - wireframe.cc
 
+the 404 image was made by me in mspaint
+
+
 used verdana font for readability and dyslexia assistance

@@ -186,6 +186,7 @@ a{
     background-size: cover;
 }
 
+
 /*REPORT*/
 .report-container{
    color: rgb(255, 255, 255);
@@ -237,6 +238,7 @@ a{
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 
 /*SPECIES FINDER*/
 .speciestext{
@@ -362,6 +364,7 @@ a{
     font-size: 1rem;
 }
 
+
 /*SEARCH REPORTS*/
 .two-column-right{
     display: grid;
@@ -396,6 +399,7 @@ a{
     background-size: cover;
 }
 
+
 /*REPORTS*/
 .reports{
     color: rgb(255, 255, 255);
@@ -410,4 +414,30 @@ a{
 .srepo{
     margin-left: 70px;
     margin-top: 100px;
+}
+
+
+/*404*/
+.err{
+   color: rgb(255, 255, 255);
+   height: 300px;
+   width: 500px;
+   padding-left: 100px;
+   padding-top: 100px;
+   padding-right: 200px;
+   border-radius: 8px;   
+}
+.errimg{
+    background-image: url("mspaintlizard.PNG") ;
+    margin-top: 100px;
+    margin-bottom: -100px;
+    height: 300x;
+    width: 600px;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.errtwocolumn{
+    display: grid;
+    grid-template-columns: 2fr 3fr;
 }

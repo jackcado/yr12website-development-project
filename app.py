@@ -52,7 +52,6 @@ def home():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     """Sign up form."""
-
     if request.method == "POST":
 
         username = request.form['username']
@@ -65,7 +64,7 @@ def signup():
         sql = "SELECT * from user WHERE username = ?"
         user = query_db(sql=sql, args=(username,), one=True)
         if user:
-            flash("Username already taken")          
+            flash("Username already taken")
         else:
             # Create a query to insert their data.
             sql = "INSERT INTO user (username, password) VALUES (?, ?);"
@@ -181,6 +180,12 @@ def add_item():
     sql = "INSERT INTO item (item) VALUES (?);"
     query_db(sql, (item,))  # Execute the query.
     return redirect('/')  # Redirect back to the home page.
+
+
+# 404 route when bad link.
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('/404.html', error=error), 404
 
 
 # Runs with debug enabled.
