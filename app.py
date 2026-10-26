@@ -52,6 +52,7 @@ def home():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     """Sign up form."""
+
     if request.method == "POST":
 
         username = request.form['username']
@@ -60,10 +61,16 @@ def signup():
 
         hashed_password = generate_password_hash(password)
 
-        # Create a query to insert their data.
-        sql = "INSERT INTO user (username, password) VALUES (?, ?);"
-        query_db(sql, (username, hashed_password))  # Execute the query.
-        flash("Sign up Succsessful")
+    # Checking here for unique username.
+        sql = "SELECT * from user WHERE username = ?"
+        user = query_db(sql=sql, args=(username,), one=True)
+        if user:
+            flash("Username already taken")          
+        else:
+            # Create a query to insert their data.
+            sql = "INSERT INTO user (username, password) VALUES (?, ?);"
+            query_db(sql, (username, hashed_password))  # Execute the query.
+            flash("Sign up successful")
 
     return render_template('signup.html')
 

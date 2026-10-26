@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<main>
+
+<body>
     <div class="sight">
         <h2>Recorded Sightings</h2>
     </div>
+    <div class="two-column-right">
         <div class="resulttext">
+            <!-- Takes results from database to list all reports and info. Double break formats so it looks neater. -->
             {% for result in results %}
-            <a href="reports/{{result[4]}}">{{result[0]}} | {{result[2]}} | Reported by: {{result[1]}} on {{result[3]}}</a>
+            <a href="reports/{{result[4]}}">{{result[0]}} | {{result[2]}} | Reported by: {{result[1]}} on {{result[3]}}<br><br></a>
             {% endfor %}
         </div>
-    </body>
-</main>
+        <div class="srimage">
+            <img>
+        </div>
+    </div>
+</body>
+
 
 {% endblock %}

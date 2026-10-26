@@ -339,13 +339,19 @@ a{
 }
 
 /*SEARCH REPORTS*/
+.two-column-right{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin-right: 50px;
+    overflow-y: hidden;
+}
 .sight{
     color: rgb(255, 255, 255);
     position: relative;
     text-align: left;
     margin-left: 70px;
     top: 40px;
-    width: 100%;
+    width: 50%;
     font-size: 1.6rem;
 }
 .resulttext{
@@ -356,6 +362,14 @@ a{
     top: 80px;
     width: 100%;
     font-size: 1rem;
+}
+.srimage{
+    background-image: url("mapofnewzealand.png") ;
+    height: 800px;
+    width: 600px;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /*REPORTS*/
