@@ -169,6 +169,14 @@ button:hover{
 a{
     color: rgb(21, 41, 21);
 }
+.loginimage{
+    background-image: url("loginimg.png") ;
+    height: 654px;
+    width: 600px;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 /*REPORT*/
 .report-container{
@@ -212,6 +220,14 @@ button:hover{
 }
 a{
     color: rgb(21, 41, 21);
+}
+.rimage{
+    background-image: url("reportimage.png") ;
+    height: 654px;
+    width: 600px;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /*SPECIES FINDER*/
@@ -342,16 +358,15 @@ a{
 .two-column-right{
     display: grid;
     grid-template-columns: 2fr 1fr;
-    margin-right: 50px;
     overflow-y: hidden;
 }
 .sight{
     color: rgb(255, 255, 255);
     position: relative;
     text-align: left;
-    margin-left: 70px;
-    top: 40px;
-    width: 50%;
+    margin-left: -20px;
+    top: -20px;
+    width: 100%;
     font-size: 1.6rem;
 }
 .resulttext{
@@ -359,14 +374,15 @@ a{
     position: relative;
     text-align: left;
     margin-left: 100px;
-    top: 80px;
+    top: 60px;
     width: 100%;
     font-size: 1rem;
 }
 .srimage{
+    padding-left: 60px;
     background-image: url("mapofnewzealand.png") ;
-    height: 800px;
-    width: 600px;
+    height: 654px;
+    width: 470px;
     background-position: right;
     background-repeat: no-repeat;
     background-size: cover;

@@ -91,9 +91,10 @@ def login():
         user = query_db(sql=sql, args=(username,), one=True)
         if user:
             if check_password_hash(user[2], password):
-                # Stores in session.
+                # Stores in session and redirects.
                 session['user'] = user
                 flash("Logged in successfully")
+                return redirect('/')
             else:
                 flash("Incorrect password")
         else:
@@ -117,7 +118,7 @@ def report():
     try:
         session['user']
     except KeyError:
-        flash("Please login")
+        flash("Please login before reporting!")
         return redirect('/login')
 
     if request.method == "POST":

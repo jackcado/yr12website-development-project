@@ -3,24 +3,29 @@
 
 <!-- login form -->
 <main>
-    <div class="login-container">
-        <form action="/login" method="post">
-            <h2>Login</h2>
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" name="username" required></input>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" required></input>
-            </div>
-            <button type="submit">Login</button>
+    <div class="two-column-right">
+        <div class="login-container">
+            <form action="/login" method="post">
+                <h2>Login</h2>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" required></input>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" required></input>
+                </div>
+                <button type="submit">Login</button>
 
-<!-- redirects to signup incase user doesn't have existing account -->
-            <div class="redirect">
-                <a href="signup">Don't have an account? Sign up here!</a>
-            </div>
-        </form>
+    <!-- redirects to signup incase user doesn't have existing account -->
+                <div class="redirect">
+                    <a href="signup">Don't have an account? Sign up here!</a>
+                </div>
+            </form>
+        </div>
+        <div class="loginimage">
+            <img>
+        </div>
     </div>
 </main>
 
