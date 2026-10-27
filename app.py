@@ -9,8 +9,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = "password123"
 
 
-# Path and filename for database.
+# Path and filename for database and upload folder.
 DATABASE = "please.db"
+UPLOAD_FOLDER = "yr12website-development-project/static/imageupload"
 
 
 # Connects and query database.
@@ -130,9 +131,11 @@ def report():
 
         date = request.form['date']
 
+        filename = request.files["file"].filename
+
         # Create a query to insert their data.
-        sql = "INSERT INTO reports (location, username, speciesid, date) VALUES (?, ?, ?, ?);"
-        query_db(sql, (location, username, speciesid, date))  # Execute the query.
+        sql = "INSERT INTO reports (location, username, speciesid, date, imagefilename) VALUES (?, ?, ?, ?, ?);"
+        query_db(sql, (location, username, speciesid, date, filename))  # Execute the query.
         flash("Thank you for your report!")
 
     sql = "SELECT speciesid, commonname FROM species"
@@ -177,8 +180,11 @@ def add_item():
     # Get the form data from the request object like this.
     item = request.form['item_name']
     # Create a query to insert their data.
-    sql = "INSERT INTO item (item) VALUES (?);"
-    query_db(sql, (item,))  # Execute the query.
+    file = request.files["file"]
+    if file:
+        file.save(UPLOAD_FOLDER+filename)
+    sql = "INSERT INTO reports (imagefilename) VALUES (?);"
+    query_db(sql, (file,))  # Execute the query.
     return redirect('/')  # Redirect back to the home page.
 
 

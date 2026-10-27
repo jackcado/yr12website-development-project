@@ -36,12 +36,18 @@
                         {% endfor %}
                     </select>
                 </div>
+                <br>
+                <div class="image">
+                    <label for="file">Image (optional)</label>
+                    <input type="file" id="file" name="file" accept="image/*">
+                </div>
                 <!-- takes user to species list with pictures incase they don't know the name of what they saw -->
                 <div class="redirect">
                     <a href="/speciesfinder">Don't know what species you saw? Check out our photo guide!</a>
                 </div>
 
                 <!-- submit button -->
+                <br> <br> <br>
                 <button type="submit">Submit</button>
             </form>
         </div>

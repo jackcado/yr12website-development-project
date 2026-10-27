@@ -46,14 +46,15 @@ body{
 }
 .flash{
     list-style-type: none;
-    background-color: #ffde3a;
+    background-color: #ff543a;
     box-shadow: #222 5px, 5px, 10px;
     max-width: 16rem;
+    margin-top: -200px;
     padding: 10px;
     margin-left: 6.3rem;
 }
 .flash-message{
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 .para{
     margin-right: 200px;
@@ -194,6 +195,7 @@ a{
    width: 500px;
    padding: 100px;
    border-radius: 8px;
+   margin-top: -90px;
 }
 .report-form{
     display: flex;
