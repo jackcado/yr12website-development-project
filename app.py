@@ -11,7 +11,7 @@ app.config['SECRET_KEY'] = "password123"
 
 # Path and filename for database and upload folder.
 DATABASE = "please.db"
-UPLOAD_FOLDER = "yr12website-development-project/static/imageupload"
+UPLOAD_FOLDER = "static/imageupload/"
 
 
 # Connects and query database.
@@ -80,7 +80,6 @@ def signup():
 @app.route('/login', methods=["GET", "POST"])
 def login():
     """Log in form."""
-    print(request.form)
     if request.method == "POST":
         # Getting username.
         username = request.form['username']
@@ -131,9 +130,12 @@ def report():
 
         date = request.form['date']
 
-        filename = request.files["file"].filename
+        file = request.files["file"]
 
         # Create a query to insert their data.
+        if file:
+            filename = request.files["file"].filename
+            file.save(UPLOAD_FOLDER + filename)
         sql = "INSERT INTO reports (location, username, speciesid, date, imagefilename) VALUES (?, ?, ?, ?, ?);"
         query_db(sql, (location, username, speciesid, date, filename))  # Execute the query.
         flash("Thank you for your report!")
@@ -149,7 +151,7 @@ def report():
 @app.route('/searchreports', methods=["GET", "POST"])
 def searchreports():
     """Look through reports made."""
-    sql = "SELECT species.commonname, reports.username, reports.location, reports.date, reports.reportid FROM reports LEFT JOIN species ON reports.speciesid = species.speciesid"
+    sql = "SELECT species.commonname, reports.username, reports.location, reports.date, reports.imagefilename, reports.reportid FROM reports LEFT JOIN species ON reports.speciesid = species.speciesid"
     results = query_db(sql)
 
     return render_template('searchreports.html', results=results)
@@ -160,7 +162,7 @@ def searchreports():
 def reports(reportid):
     """Report form."""
     sql = "SELECT * FROM reports WHERE reportid=?"
-    sql = f"SELECT species.commonname, reports.username, reports.location, reports.date, reports.reportid FROM reports LEFT JOIN species ON reports.speciesid = species.speciesid WHERE reportid={reportid}"
+    sql = f"SELECT species.commonname, reports.username, reports.location, reports.date, reports.imagefilename, reports.reportid FROM reports LEFT JOIN species ON reports.speciesid = species.speciesid WHERE reportid={reportid}"
 
     reports = query_db(sql, one=True)
     return render_template('reports.html', reports=reports)
@@ -180,7 +182,7 @@ def add_item():
     # Get the form data from the request object like this.
     item = request.form['item_name']
     # Create a query to insert their data.
-    file = request.files["file"]
+    file = request.files["imagefilename"]
     if file:
         file.save(UPLOAD_FOLDER+filename)
     sql = "INSERT INTO reports (imagefilename) VALUES (?);"

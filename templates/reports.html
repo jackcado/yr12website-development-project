@@ -9,6 +9,9 @@
             <p>Sight recorded in {{reports[2]}}</p>
             <p>Reported by {{reports[1]}} on {{reports[3]}}</p>
         </div>
+        <div class="uploadedimg">
+            <img src="{{url_for('static', filename='imageupload/' + reports[4])}}">
+        </div>
     </div>
     <div class="srepo">
         <a href="/searchreports">Return to report search</a>
